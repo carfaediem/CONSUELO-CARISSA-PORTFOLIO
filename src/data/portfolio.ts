@@ -4,6 +4,7 @@
  * (pahiyasfestive.my.canva.site/carissaconsuelo) - edit here and every page
  * that shows it follows.
  */
+import { asset } from '@/lib/asset'
 
 import {
   PenNib,
@@ -195,13 +196,13 @@ export const SKILL_GROUPS: { label: string; items: string[] }[] = [
 /** The marquee and the tool marks. Single-colour Simple Icons silhouettes,
  *  tinted with the page ink so no brand blue fights the warm palette. */
 export const TOOLS: { name: string; iconPath: string }[] = [
-  { name: 'Google Docs', iconPath: '/icons/si-googledocs.svg' },
-  { name: 'Google Sheets', iconPath: '/icons/si-googlesheets.svg' },
-  { name: 'Grammarly', iconPath: '/icons/si-grammarly.svg' },
-  { name: 'Canva', iconPath: '/icons/si-canva.svg' },
-  { name: 'Photoshop', iconPath: '/icons/si-adobephotoshop.svg' },
-  { name: 'Instagram', iconPath: '/icons/si-instagram.svg' },
-  { name: 'LinkedIn', iconPath: '/icons/si-linkedin.svg' },
-  { name: 'Facebook', iconPath: '/icons/si-facebook.svg' },
-  { name: 'Twitter/X', iconPath: '/icons/si-x.svg' },
+  { name: 'Google Docs', iconPath: asset('/icons/si-googledocs.svg') },
+  { name: 'Google Sheets', iconPath: asset('/icons/si-googlesheets.svg') },
+  { name: 'Grammarly', iconPath: asset('/icons/si-grammarly.svg') },
+  { name: 'Canva', iconPath: asset('/icons/si-canva.svg') },
+  { name: 'Photoshop', iconPath: asset('/icons/si-adobephotoshop.svg') },
+  { name: 'Instagram', iconPath: asset('/icons/si-instagram.svg') },
+  { name: 'LinkedIn', iconPath: asset('/icons/si-linkedin.svg') },
+  { name: 'Facebook', iconPath: asset('/icons/si-facebook.svg') },
+  { name: 'Twitter/X', iconPath: asset('/icons/si-x.svg') },
 ]

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, GraduationCap, MapPin } from '@/components/slab'
 import { profile } from '@/data/profile'
 import { BIO, QUICK_FACTS, SKILL_GROUPS, EDUCATION } from '@/data/portfolio'
+import { asset } from '@/lib/asset'
 
 /**
  * About - "A little about me". The bio beside the cover polaroid, the
@@ -50,13 +51,13 @@ export default function AboutGrid() {
         </div>
 
         <figure className="cc-polaroid">
-          <img className="cc-polaroid__bang" src="/me/bang.png" alt="" aria-hidden="true" />
+          <img className="cc-polaroid__bang" src={asset('/me/bang.png')} alt="" aria-hidden="true" />
           <span className="cc-polaroid__tape" aria-hidden="true" />
           <span className="cc-polaroid__photo">
             <img src={profile.hero.portraitSrc} alt={profile.hero.portraitAlt} width={720} height={900} />
           </span>
           <figcaption className="cc-polaroid__cap">{profile.hero.caption}</figcaption>
-          <img className="cc-polaroid__flower" src="/me/hibiscus.png" alt="" aria-hidden="true" />
+          <img className="cc-polaroid__flower" src={asset('/me/hibiscus.png')} alt="" aria-hidden="true" />
         </figure>
 
         <aside className="cc-facts" aria-labelledby="facts-title">

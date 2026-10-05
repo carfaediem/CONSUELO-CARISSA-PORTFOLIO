@@ -11,6 +11,7 @@ import {
 } from '@/components/slab'
 import { WORKS, EXPERIENCE, SERVICES, SKILL_GROUPS, EDUCATION } from '@/data/portfolio'
 import { profile } from '@/data/profile'
+import { asset } from '@/lib/asset'
 
 /**
  * Home's showcase: one card per rail view, each an index of what that view
@@ -81,7 +82,7 @@ export default function HomeBento() {
             <img src={profile.avatarSrc} alt="" loading="lazy" decoding="async" />
             <span className="bento__polaroid-cap">{profile.hero.caption}</span>
           </span>
-          <img className="bento__polaroid-flower" src="/me/hibiscus.png" alt="" loading="lazy" decoding="async" />
+          <img className="bento__polaroid-flower" src={asset('/me/hibiscus.png')} alt="" loading="lazy" decoding="async" />
         </div>
       </Link>
 

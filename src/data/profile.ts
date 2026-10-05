@@ -5,6 +5,7 @@
  * (pahiyasfestive.my.canva.site/carissaconsuelo). Page-specific copy lives in
  * the other files in src/data/.
  */
+import { asset } from '@/lib/asset'
 
 import { Briefcase, GraduationCap, MapPin, type Icon } from '@/components/slab'
 
@@ -51,7 +52,7 @@ export const profile: Profile = {
   firstName: 'Carissa',
   handle: 'Content writer & social media manager',
   role: 'Content & Social Desk',
-  avatarSrc: '/me/avatar.png',
+  avatarSrc: asset('/me/avatar.png'),
   email: 'consuelocarissa@gmail.com',
   location: 'Batangas, Philippines',
   masthead: 'Vol. 01 — Content & Social Desk',
@@ -63,7 +64,7 @@ export const profile: Profile = {
   displayName: { line1: 'Carissa Faye', line2: 'Consuelo' },
   hero: {
     body: 'Content writer & social media manager who edits like a journalist, plans like a producer, and writes copy that actually gets read.',
-    portraitSrc: '/me/portrait.png',
+    portraitSrc: asset('/me/portrait.png'),
     portraitAlt: 'Carissa Faye Consuelo, arms folded, in a black blazer and glasses',
     caption: 'hi, it’s me!',
   },

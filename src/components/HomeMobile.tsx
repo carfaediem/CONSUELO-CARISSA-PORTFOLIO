@@ -3,6 +3,7 @@ import { CaretRight, Stack, Files } from '@/components/slab'
 import { profile } from '@/data/profile'
 import { WORKS } from '@/data/portfolio'
 import QuickMenu from './QuickMenu'
+import { asset } from '@/lib/asset'
 
 /**
  * Home on a phone, the parts the rail and the bento used to carry:
@@ -42,7 +43,7 @@ export function HomeStats() {
 }
 
 const TILES = [
-  { n: '01', label: 'Works', to: '/works', title: 'Clippings & case files', desc: 'Newsletters, features, calendars and campaign copy.', img: '/me/swirl.png' },
+  { n: '01', label: 'Works', to: '/works', title: 'Clippings & case files', desc: 'Newsletters, features, calendars and campaign copy.', img: asset('/me/swirl.png') },
   { n: '02', label: 'Services', to: '/services', title: 'What I do', desc: 'Writing, socials, SEO & AEO, editing.', Icon: Stack },
   { n: '03', label: 'Experience', to: '/experience', title: 'The paper trail', desc: 'Experience, filed & stamped.', Icon: Files, accent: true },
   { n: '04', label: 'About', to: '/about', title: `Hi, I’m ${profile.firstName}.`, desc: 'The A in Carissa stands for All-rounder!', img: profile.avatarSrc },
