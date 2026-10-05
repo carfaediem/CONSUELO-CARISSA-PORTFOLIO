@@ -1,16 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { SealCheck } from '@/components/slab'
 import ThemeGlyph from './ThemeGlyph'
-import {
-  HomeIcon,
-  FolderIcon,
-  StackIcon,
-  CupIcon,
-  StarIcon,
-  UserIcon,
-  MessageIcon,
-} from './RailIcons'
+import { HomeIcon, FolderIcon, StackIcon, FilesIcon, UserIcon, MessageIcon } from './RailIcons'
 import { getTheme, toggleTheme, type Theme } from '@/lib/theme'
 import { profile } from '@/data/profile'
 
@@ -27,12 +18,11 @@ import { profile } from '@/data/profile'
  */
 export const RAIL_LINKS = [
   { label: 'Home', to: '/', Icon: HomeIcon },
-  { label: 'Projects', to: '/projects', Icon: FolderIcon },
+  { label: 'Works', to: '/works', Icon: FolderIcon },
   { label: 'Services', to: '/services', Icon: StackIcon },
-  { label: 'Showcase', to: '/showcase', Icon: CupIcon },
-  { label: 'Testimonials', to: '/testimonials', Icon: StarIcon },
+  { label: 'Experience', to: '/experience', Icon: FilesIcon },
   { label: 'About', to: '/about', Icon: UserIcon },
-  { label: 'FAQs / Contact', to: '/contact', Icon: MessageIcon },
+  { label: 'Contact', to: '/contact', Icon: MessageIcon },
 ] as const
 
 export default function Rail() {
@@ -54,15 +44,13 @@ export default function Rail() {
           />
         </span>
 
-        <h2 className="rail__name">
-          {profile.name}
-          <SealCheck size={19} weight="fill" aria-label={profile.verifiedLabel} />
-        </h2>
+        <h2 className="rail__name">{profile.name}</h2>
         <p className="rail__handle">
           {profile.handle}
         </p>
 
         <div className="rail__actions">
+          {profile.socials.length > 0 && (
           <ul className="rail__socials" role="list" aria-label="Social profiles">
           {profile.socials.map(({ label, href, iconPath }) => (
             <li key={label}>
@@ -84,6 +72,7 @@ export default function Rail() {
               </li>
             ))}
           </ul>
+          )}
 
           <button
             type="button"

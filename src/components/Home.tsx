@@ -37,16 +37,21 @@ export default function Home() {
       {phone && <HomeProfile />}
 
       <div className="home__head">
+        {/* Canva's masthead rule: issue line left, dateline right. */}
+        <p className="home__masthead">
+          <span>{profile.masthead}</span>
+          <span>{profile.location}</span>
+        </p>
         <div className="home__headline">
           <h1 className="home__title" id="home-title">
             <span className="home__line">
-              {displayName.line1} {displayName.line2}
+              {displayName.line1} <em className="home__accent">{displayName.line2}</em>
             </span>
           </h1>
 
           {!phone && (
-            <Link className="home__cta" to="/contact">
-              Get in touch
+            <Link className="home__cta" to="/about">
+              Let’s get started
               <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
             </Link>
           )}
@@ -62,7 +67,7 @@ export default function Home() {
       <div className="home__glass home__glass--tools">
         <div className="home__tools">
           <div className="home__tools-head">
-            <span className="home__tools-eyebrow">Daily drivers</span>
+            <span className="home__tools-eyebrow">Well-worn stamps</span>
             <h2 className="home__tools-label">Tools I work with</h2>
           </div>
           <ToolsMarquee />

@@ -1,24 +1,28 @@
 :root {
   /* Brand palette */
-  --navy:       #0B1E3F;   /* primary text, card surface, dark accents */
-  --navy-ink:   #060C1A;   /* matches shader dark base for .dark-section */
-  --cream:      #F4F4ED;   /* matches shader light base, page bg */
-  --white:      #FFFFFF;
-  --orange:     #FF7A1A;   /* CTA, accent bar, active dot */
-  --orange-hover: #FFA155; /* CTA hover state */
-  --orange-ink: #B4490A;   /* accessible orange TEXT on light bg - 4.88:1 on cream, 5.39:1 on white (WCAG AA) */
-  --muted:      #5A6479;
-  --divider:    rgba(11, 30, 63, 0.12);
-  --success:    #2E9E6B;   /* form status ok - clears 4.5:1 on navy-ink */
-  --error:      #D9544F;   /* form status error - clears 4.5:1 on navy-ink */
+  --navy:       #2A211D;   /* primary text, card surface, dark accents */
+  --navy-ink:   #1C1613;   /* matches shader dark base for .dark-section */
+  --cream:      #FFFCFA;   /* matches shader light base, page bg */
+  --white:      #FFFFFF;   /* card surface */
+  --orange:     #6E1423;   /* Canva wine - CTA, accent bar, active dot (name kept from the template) */
+  --orange-hover: #7D1A19; /* CTA hover state */
+  --orange-ink: #6E1423;   /* accessible orange TEXT on light bg - 4.88:1 on cream, 5.39:1 on white (WCAG AA) */
+  --muted:      #7A6E64;   /* Canva muted brown */
+  --divider:    rgba(42, 33, 29, 0.12);
+  --success:    #93A66B;   /* form status ok - clears 4.5:1 on navy-ink */
+  --error:      #D8CBC2;   /* form status error - clears 4.5:1 on navy-ink */
 
   /* Brands section - neutral logo plate so client marks read as framed logos,
      not site UI (esp. an orange logo vs the --orange accent) */
-  --brands-chip-bg:     #FBFBF7;                  /* cool near-white, lifts off cream */
-  --brands-chip-border: rgba(11, 30, 63, 0.10);   /* hairline frame on the logo medallion */
+  --brands-chip-bg:     #FFF3F0;                  /* cool near-white, lifts off cream */
+  --brands-chip-border: rgba(42, 33, 29, 0.10);   /* hairline frame on the logo medallion */
 
   /* Type */
-  --font-display: 'Poppins', system-ui, -apple-system, sans-serif;
+  /* The template sets --font-display on everything, body text included, so it
+     carries Inter. Fraunces is opted into per heading through --font-serif
+     (styles/brand.css). */
+  --font-display: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Fraunces Variable', Georgia, serif;
   --fs-display: clamp(64px, 9vw, 128px);
   --fs-h2: clamp(32px, 4vw, 56px);
   --fs-h3: clamp(22px, 2vw, 28px);
@@ -39,9 +43,9 @@
   --radius-circle: 50%;
 
   /* Shadows */
-  --shadow-soft: 0 20px 60px -20px rgba(11, 30, 63, 0.25);
-  --shadow-card: 0 40px 120px -30px rgba(6, 12, 26, 0.35);
-  --shadow-btn: 0 8px 24px -8px rgba(11, 30, 63, 0.25);
+  --shadow-soft: 0 20px 60px -20px rgba(42, 33, 29, 0.25);
+  --shadow-card: 0 40px 120px -30px rgba(28, 22, 19, 0.35);
+  --shadow-btn: 0 8px 24px -8px rgba(42, 33, 29, 0.25);
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -71,27 +75,27 @@
 
   /* Surfaces. These are the tokens that had to exist for the theme to flip
      without rewriting the section stylesheets. */
-  --paper:      #FBFBF7;   /* raised card on cream */
-  --line:       rgba(11, 30, 63, 0.14);
-  --line-strong:rgba(11, 30, 63, 0.28);
-  --tint:       rgba(11, 30, 63, 0.05);
-  --tint-strong:rgba(11, 30, 63, 0.09);
+  --paper:      #FFF3F0;   /* raised card on cream */
+  --line:       rgba(42, 33, 29, 0.14);
+  --line-strong:rgba(42, 33, 29, 0.28);
+  --tint:       rgba(42, 33, 29, 0.05);
+  --tint-strong:rgba(42, 33, 29, 0.09);
   --glass:      rgba(251, 251, 247, 0.72);
   /* A plate that stays light in BOTH themes. Brand marks are external
      identifiers and need a constant backdrop to read against. */
-  --plate:      #F4F4ED;
+  --plate:      #FFFCFA;
   /* The opaque fill for sections that were written as white-on-navy back when
      the shader inverted on scroll. It no longer does, so they carry their own
      ground. Same navy in both themes: their type is light either way. */
-  --panel-dark: #060C1A;
+  --panel-dark: #1C1613;
 
   /* Verified badge - Facebook blue, not the site accent. It is a platform
      signal, not brand furniture, so it does not follow --orange. */
-  --verified:   #0866FF;
+  --verified:   #6E1423;
 
   /* Ink for anything sitting on --plate. Both are constant across themes:
      a brand mark on a light plate must not invert with the page. */
-  --plate-ink:  #0B1E3F;
+  --plate-ink:  #2A211D;
 }
 
 @media (min-width: 1100px) {
@@ -103,21 +107,23 @@
    --cream (page), --navy (ink), --white (card surface) and flips with it.
    Orange stays the single accent in both modes. */
 [data-theme='dark'] {
-  --cream:        #070B14;
-  --paper:        #0B1120;
-  --white:        #0E1626;
-  --navy:         #EDF0F6;
-  --navy-ink:     #04070F;
-  --muted:        rgba(237, 240, 246, 0.60);
+  --orange:       #7D1A19;   /* Canva brick - accent fill in dark mode */
+  --orange-hover: #9A2A28;   /* derived */
+  --cream:        #2A211D;
+  --paper:        #3A2E29;
+  --white:        #3A2E29;
+  --navy:         #FFFCFA;
+  --navy-ink:     #1C1613;
+  --muted:        #D8CBC2;
   --divider:      rgba(255, 255, 255, 0.10);
   --line:         rgba(255, 255, 255, 0.09);
   --line-strong:  rgba(255, 255, 255, 0.20);
   --tint:         rgba(255, 255, 255, 0.05);
   --tint-strong:  rgba(255, 255, 255, 0.09);
-  --glass:        rgba(14, 22, 38, 0.72);
-  --orange-ink:   #FF9A4D;
-  --panel-dark:   #0B1120;
-  --brands-chip-bg:     #F4F4ED;
+  --glass:        rgba(58, 46, 41, 0.72);
+  --orange-ink:   #E4CBC9;
+  --panel-dark:   #3A2E29;
+  --brands-chip-bg:     #FFFCFA;
   --brands-chip-border: rgba(255, 255, 255, 0.14);
   --shadow-soft:  0 20px 60px -20px rgba(0, 0, 0, 0.75);
   --shadow-card:  0 40px 120px -30px rgba(0, 0, 0, 0.85);

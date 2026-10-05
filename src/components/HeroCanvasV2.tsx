@@ -112,11 +112,11 @@ const frag = `
     float w       = fwidth(bands) * HAIRLINE_PIXELS * 0.5;
     float line    = 1.0 - smoothstep(0.0, w, dist);
 
-    // Theme colors (kept identical to v1 so the rest of the page does not shift).
-    vec3 bgLight   = vec3(0.957, 0.957, 0.929); // #F4F4ED cream
-    vec3 lineLight = vec3(0.46,  0.46,  0.46);  // soft neutral gray contour on cream
-    vec3 bgDark    = vec3(0.024, 0.047, 0.102); // #060C1A navy ink
-    vec3 lineDark  = vec3(1.0,   1.0,   1.0);   // solid white on navy (black would be invisible)
+    // Theme colors - the Canva portfolio's palette.
+    vec3 bgLight   = vec3(1.0,   0.988, 0.980); // #FFFCFA Canva page
+    vec3 lineLight = vec3(0.710, 0.486, 0.525); // #B57C86 Canva swirl mauve
+    vec3 bgDark    = vec3(0.165, 0.129, 0.114); // #2A211D Canva ink
+    vec3 lineDark  = vec3(0.894, 0.796, 0.788); // #E4CBC9 Canva blush
 
     vec3 bg      = mix(bgLight, bgDark, uDarkMix);
     vec3 lineCol = mix(lineLight, lineDark, uDarkMix);

@@ -8,10 +8,9 @@ import { restorePerfTier } from '@/lib/perf'
 import { restorePrefs } from '@/lib/a11y'
 
 // Every route but Home is its own chunk: the first visit only pays for Home.
-const ProjectsView = lazy(() => import('@/views/ProjectsView'))
+const WorksGrid = lazy(() => import('@/components/WorksGrid'))
 const ServicesView = lazy(() => import('@/views/ServicesView'))
-const ShowcaseView = lazy(() => import('@/views/ShowcaseView'))
-const TestimonialsGrid = lazy(() => import('@/components/TestimonialsGrid'))
+const ExperienceGrid = lazy(() => import('@/components/ExperienceGrid'))
 const AboutGrid = lazy(() => import('@/components/AboutGrid'))
 const ContactGrid = lazy(() => import('@/components/ContactGrid'))
 const Privacy = lazy(() => import('@/components/Privacy'))
@@ -45,6 +44,8 @@ import './styles/a11y.css'
 import './styles/apple.css'
 // Mobile motion + component pass on top of it (phone shell only).
 import './styles/mobile-pass.css'
+// Carissa's pages and the brand type/colour overrides (BRAND-GUIDE.md).
+import './styles/brand.css'
 // Last: the perf tiers only ever turn things OFF, so they must win.
 import './styles/perf.css'
 
@@ -64,10 +65,9 @@ createRoot(container).render(
             renders into its one scrolling panel. */}
         <Route element={<App />}>
           <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<ProjectsView />} />
+          <Route path="/works" element={<WorksGrid />} />
           <Route path="/services" element={<ServicesView />} />
-          <Route path="/showcase" element={<ShowcaseView />} />
-          <Route path="/testimonials" element={<TestimonialsGrid />} />
+          <Route path="/experience" element={<ExperienceGrid />} />
           <Route path="/about" element={<AboutGrid />} />
           <Route path="/contact" element={<ContactGrid />} />
         </Route>

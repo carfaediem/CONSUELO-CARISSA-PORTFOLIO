@@ -1,15 +1,14 @@
 import { useState, type FormEvent } from 'react'
-import { PaperPlaneTilt, CheckCircle, WarningCircle, EnvelopeSimple, ArrowUpRight, CaretDown } from '@/components/slab'
-import { FAQS } from '@/data/faqs'
+import { PaperPlaneTilt, CheckCircle, WarningCircle, EnvelopeSimple, ArrowUpRight } from '@/components/slab'
+import { SERVICES } from '@/data/portfolio'
 import { profile } from '@/data/profile'
 import { readLead, submitLead, SubmitError, MAX_NAME, MAX_EMAIL, MAX_MESSAGE, type SubmitResult } from '@/lib/contact'
 
 /**
  * ContactGrid - the Contact view as a fixed viewport.
  *
- * One glass sheet, two columns: the questions people ask before they write
- * on the left, on a dark plate (one open at a time, the list scrolls), and
- * the form itself on the right. Sized to the panel, so
+ * One glass sheet, two columns: what I can help with on the left, on the
+ * wine plate, and the form itself on the right. Sized to the panel, so
  * nothing here scrolls; the message box takes whatever height is left.
  *
  * Submission goes through lib/contact.ts, which is the one place a form
@@ -31,8 +30,6 @@ export default function ContactGrid() {
   // Bumped on every failed submit so the shake replays even if the same
   // error is already showing.
   const [shake, setShake] = useState(0)
-  // One question open at a time so the plate never grows past the form.
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -58,12 +55,12 @@ export default function ContactGrid() {
   return (
     <section className="pgrid cgrid" aria-labelledby="contact-title">
       <header className="pgrid__head">
-        <span className="pgrid__eyebrow">FAQs / Contact</span>
+        <span className="pgrid__eyebrow">Contact</span>
         <h1 className="pgrid__title" id="contact-title">
-          Your contact headline goes here.
+          Let’s get <em>started</em>
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one or two lines inviting people to write and saying what they get back.
+          Have a story to tell, a page to run, or a draft that needs a second pair of eyes? Tell me about it.
         </p>
       </header>
 
@@ -71,36 +68,26 @@ export default function ContactGrid() {
         {/* Left: the dark plate. What happens after you press send. */}
         <aside className="cgrid__aside" aria-labelledby="contact-faq">
           <div className="cgrid__aside-head">
-            <span className="cgrid__eyebrow">FAQs</span>
+            <span className="cgrid__eyebrow">What I do</span>
             <h2 className="cgrid__aside-title" id="contact-faq">
-              Quick answers.
+              Four ways I can help.
               <br />
-              <span>Still have one? Write below.</span>
+              <span>Pick one, or mix them.</span>
             </h2>
           </div>
 
           <ul className="cgrid__faqs" role="list">
-            {FAQS.map((f, i) => {
-              const isOpen = openFaq === i
-              return (
-                <li key={f.q} className={`cgrid__faq${isOpen ? ' is-open' : ''}`}>
-                  <button
-                    type="button"
-                    className="cgrid__faq-q"
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                    aria-controls={`cfaq-${i}`}
-                  >
-                    <span className="cgrid__step-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="cgrid__faq-text">{f.q}</span>
-                    <CaretDown size={14} weight="bold" className="cgrid__faq-caret" aria-hidden="true" />
-                  </button>
-                  <div className="cgrid__faq-a" id={`cfaq-${i}`} hidden={!isOpen}>
-                    <p>{f.a}</p>
-                  </div>
-                </li>
-              )
-            })}
+            {SERVICES.map((sv) => (
+              <li key={sv.index} className="cgrid__faq is-open">
+                <div className="cgrid__faq-q">
+                  <span className="cgrid__step-index" aria-hidden="true">{sv.index}</span>
+                  <span className="cgrid__faq-text">{sv.title}</span>
+                </div>
+                <div className="cgrid__faq-a">
+                  <p>{sv.body}</p>
+                </div>
+              </li>
+            ))}
           </ul>
 
           <div className="cgrid__direct">
@@ -108,6 +95,7 @@ export default function ContactGrid() {
               <EnvelopeSimple size={16} weight="fill" aria-hidden="true" />
               <span>{profile.email}</span>
             </a>
+            {profile.socials.length > 0 && (
             <ul className="cgrid__socials" role="list">
               {profile.socials.map((s) => (
                 <li key={s.label}>
@@ -117,6 +105,7 @@ export default function ContactGrid() {
                 </li>
               ))}
             </ul>
+            )}
           </div>
         </aside>
 
@@ -132,8 +121,8 @@ export default function ContactGrid() {
               </h2>
               <p className="cgrid__done-body">
                 {status.via === 'webhook'
-                  ? 'It is in my inbox and on my phone. You will hear back within one business day.'
-                  : 'The message is laid out and addressed. Press send there and you will hear back within one business day.'}
+                  ? 'It is in my inbox. I will get back to you by email.'
+                  : 'The message is laid out and addressed. Press send there and I will get back to you by email.'}
               </p>
               <button type="button" className="cgrid__again" onClick={() => setStatus({ kind: 'idle' })}>
                 Write another
@@ -165,16 +154,16 @@ export default function ContactGrid() {
 
               <label className="cgrid__field">
                 <span className="cgrid__label">Email</span>
-                <input type="email" name="email" autoComplete="email" required maxLength={MAX_EMAIL} placeholder="you@yourbusiness.com" />
+                <input type="email" name="email" autoComplete="email" required maxLength={MAX_EMAIL} placeholder="you@example.com" />
               </label>
 
               <label className="cgrid__field cgrid__field--grow">
-                <span className="cgrid__label">Tell me more about your business</span>
+                <span className="cgrid__label">Tell me about the project</span>
                 <textarea
                   name="message"
                   required
                   maxLength={MAX_MESSAGE}
-                  placeholder="What do you need help with? What are you working with today?"
+                  placeholder="A newsletter, a content calendar, a blog that needs to get found…"
                 />
               </label>
 
@@ -197,7 +186,7 @@ export default function ContactGrid() {
                     {status.note}
                   </span>
                 ) : (
-                  <span className="cgrid__hint">Short reassurance line, e.g. your reply time.</span>
+                  <span className="cgrid__hint">Opens your email app with the message ready to send.</span>
                 )}
               </div>
             </form>

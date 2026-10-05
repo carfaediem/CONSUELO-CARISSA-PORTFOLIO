@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { TOOLS } from '@/data/portfolio'
 
 /**
  * ToolsMarquee
@@ -30,26 +31,10 @@ import { useMemo } from 'react'
  *   screen readers get a clean, deduped enumeration of the tools.
  */
 
-type Tool = {
-  name: string
-  iconPath: string
-  /** When set, the SVG silhouette is tinted via CSS mask. Omit for multi-color marks. */
-  color?: string
-}
-
-export const tools: Tool[] = [
-  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
-  { name: 'Codex',                iconPath: '/icons/codex.svg',           color: '#000000' },
-  { name: 'Cursor',               iconPath: '/icons/cursor.svg',          color: '#0F172A' },
-  { name: 'Hermes AI',            iconPath: '/icons/nousresearch.svg',    color: '#18181B' },
-  { name: 'VS Code',              iconPath: '/icons/vscode.svg' },
-  { name: 'GoHighLevel',          iconPath: '/icons/gohighlevel.png' },
-  { name: 'Lightspeed X-Series',  iconPath: '/icons/lightspeed.png' },
-  { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Zendesk',              iconPath: '/icons/zendesk.svg',         color: '#03363D' },
-  { name: 'Intercom',             iconPath: '/icons/intercom.svg',        color: '#1F8DED' },
-  { name: 'Slack',                iconPath: '/icons/slack.svg',           color: '#611F69' },
-]
+// The tools from the About page's "Tools & platforms" stamps
+// (src/data/portfolio.ts). All are single-colour silhouettes tinted with the
+// page ink, so no brand blue or green fights the warm palette.
+export const tools = TOOLS.map((t) => ({ ...t, color: 'var(--navy)' }))
 
 export default function ToolsMarquee() {
   // Duplicate the list so the -50% translate lands on a seamless seam.

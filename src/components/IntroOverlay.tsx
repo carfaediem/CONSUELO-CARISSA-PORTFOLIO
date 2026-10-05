@@ -47,12 +47,13 @@ const EASE_CAMERA = 'cubic-bezier(0.76, 0, 0.24, 1)'
 const easeInOut = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
 
-/** The four steps of the run. Icons are Tabler outlines, 24-unit grid. */
+/** The four steps of the run - the writing desk, not a CRM. Icons are Tabler
+ *  outlines, 24-unit grid. */
 const STEPS = [
-  { label: 'Lead comes in', trigger: true, d: 'M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11' },
-  { label: 'Tag & route', trigger: false, d: 'M4 4m0 2a2 2 0 0 1 2 -2h4.5a2 2 0 0 1 1.4 .6l7 7a2 2 0 0 1 0 2.8l-4.5 4.5a2 2 0 0 1 -2.8 0l-7 -7a2 2 0 0 1 -.6 -1.4v-4.5M8 8h.01' },
-  { label: 'Follow up', trigger: false, d: 'M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10M3 7l9 6l9 -6' },
-  { label: 'Call booked', trigger: false, d: 'M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12M16 3v4M8 3v4M4 11h16M9 16l2 2l4 -4' },
+  { label: 'Research', trigger: true, d: 'M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0M21 21l-6 -6' },
+  { label: 'Draft', trigger: false, d: 'M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4M13.5 6.5l4 4' },
+  { label: 'Edit', trigger: false, d: 'M14 3v4a1 1 0 0 0 1 1h4M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2zM9 15l2 2l4 -4' },
+  { label: 'Publish', trigger: false, d: 'M10 14l11 -11M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5' },
 ] as const
 
 const shouldRun =
@@ -362,7 +363,10 @@ export default function IntroOverlay() {
     <div className="boot" aria-hidden="true" role="presentation">
       <div className="boot__title" ref={titleRef}>
         {WORDS.map((word, i) => (
-          <span className="boot__word" key={`${word}-${i}`}>
+          <span
+            className={`boot__word${i === WORDS.length - 1 ? ' boot__word--accent' : ''}`}
+            key={`${word}-${i}`}
+          >
             <span className="boot__word-in">{word}</span>
           </span>
         ))}
@@ -395,7 +399,7 @@ export default function IntroOverlay() {
 
         <span className="boot__status" ref={statusRef}>
           <i className="boot__status-dot" />
-          <span className="boot__status-text">Executing workflow</span>
+          <span className="boot__status-text">Filing the story</span>
         </span>
       </div>
     </div>

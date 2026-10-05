@@ -1,16 +1,12 @@
 /**
- * YOUR IDENTITY - start here.
+ * Identity: name, photo, contact and the Home headline.
  *
- * Everything that says who you are lives in this file: name, handle, photo,
- * socials, email and the Home headline. Every value below is a PLACEHOLDER.
- * Replace the text, or hand this file to your AI assistant and tell it what
- * to put in each field.
- *
- * Page-specific copy (projects, services, testimonials, FAQs) lives in the
- * other files in src/data/ and at the top of each view component.
+ * Copy is taken from the Canva portfolio
+ * (pahiyasfestive.my.canva.site/carissaconsuelo). Page-specific copy lives in
+ * the other files in src/data/.
  */
 
-import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
+import { Briefcase, GraduationCap, MapPin, type Icon } from '@/components/slab'
 
 export type SocialLink = {
   label: string
@@ -25,52 +21,53 @@ export type Profile = {
   name: string
   /** First name, used in "Hi, I'm ___." on About. */
   firstName: string
+  /** Line under the name in the rail and the phone header. */
   handle: string
   /** Short role line under the handle on phones. */
   role: string
-  /** Square image. An SVG, WebP or PNG with a transparent background looks best. */
+  /** Square image. A transparent PNG sits on the accent circle. */
   avatarSrc: string
-  /** Tooltip / screen-reader label on the verified tick next to your name. */
-  verifiedLabel: string
+  /** Public address - the contact form mails it. */
   email: string
   location: string
+  /** Masthead strip above the Home headline, Canva's "VOL. 01" line. */
+  masthead: string
   /** Three short proof facts shown on phones under the Home lede. */
   stats: Stat[]
+  /** The intro types this, then flies it into the Home headline. line2 is set
+   *  in wine italic, as on the Canva cover. */
   displayName: { line1: string; line2: string }
   hero: {
     body: string
     portraitSrc: string
     portraitAlt: string
+    caption: string
   }
   socials: SocialLink[]
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  firstName: 'Your Name',
-  handle: '@yourhandle',
-  role: 'PLACEHOLDER - your title',
-  avatarSrc: '/avatar.svg',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
-  email: 'you@example.com',
-  location: 'PLACEHOLDER - your city or timezone',
-  // Pick any icon from https://phosphoricons.com and import it above.
+  name: 'Carissa Faye Consuelo',
+  firstName: 'Carissa',
+  handle: 'Content writer & social media manager',
+  role: 'Content & Social Desk',
+  avatarSrc: '/me/avatar.png',
+  email: 'consuelocarissa@gmail.com',
+  location: 'Batangas, Philippines',
+  masthead: 'Vol. 01 — Content & Social Desk',
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: '2023–', label: 'Managing socials', Icon: Briefcase },
+    { value: 'AB Comm', label: 'Univ. of Batangas', Icon: GraduationCap },
+    { value: 'GMT+8', label: 'Batangas, PH', Icon: MapPin },
   ],
-  // The intro types this line, then flies it into the Home headline.
-  // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Your headline here.', line2: 'Keep it short.' },
+  displayName: { line1: 'Carissa Faye', line2: 'Consuelo' },
   hero: {
-    body: 'PLACEHOLDER - one line on what you do and who you do it for.',
-    portraitSrc: '/avatar.svg',
-    portraitAlt: 'Portrait placeholder',
+    body: 'Content writer & social media manager who edits like a journalist, plans like a producer, and writes copy that actually gets read.',
+    portraitSrc: '/me/portrait.png',
+    portraitAlt: 'Carissa Faye Consuelo, arms folded, in a black blazer and glasses',
+    caption: 'hi, it’s me!',
   },
-  socials: [
-    { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
-    { label: 'LinkedIn profile', href: '#', iconPath: '/icons/linkedin.svg' },
-    { label: 'Discord profile', href: '#', iconPath: '/icons/discord.svg' },
-  ],
+  // None on the Canva site yet. Add { label, href, iconPath } entries here -
+  // icons for LinkedIn, Facebook, Instagram and X are in public/icons/si-*.svg.
+  socials: [],
 }

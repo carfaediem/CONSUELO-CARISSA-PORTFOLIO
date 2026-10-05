@@ -1,0 +1,628 @@
+/* ============================================
+   BRAND - Carissa Faye Consuelo
+   Colour from the Canva portfolio (wine #6E1423, brick #7D1A19, blush
+   #E4CBC9, ink #2A211D on #FFFCFA), type from personal-branding/BRAND-GUIDE.md
+   (Fraunces headlines, Inter body), the editorial details from the Canva
+   portfolio (masthead rule, italic wine accent words, the
+   polaroid, the tilted Quick Facts sheet), and the four pages the template
+   did not have: Works, Services, Experience and About.
+
+   Loaded after mobile-pass.css so its type overrides win; perf.css still
+   comes last because it only turns things off.
+   ============================================ */
+
+/* ---------- Type: Fraunces for the headlines ---------- */
+.home__title,
+.boot__title,
+.pgrid__title,
+.rail__name,
+.home__tools-label,
+.bento__title,
+.cgrid__aside-title,
+.cgrid__done-title,
+.hprofile__name,
+.hsec__title,
+.htile__title,
+.cc-stamps__title {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+}
+.home__title,
+.boot__title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.pgrid__title { font-weight: 700; letter-spacing: -0.015em; }
+.rail__name { font-weight: 700; letter-spacing: -0.01em; text-align: center; }
+/* Card names are sentence case in a serif; the template's caps tracking
+   fights Fraunces. */
+.bento__title {
+  text-transform: none;
+  letter-spacing: -0.005em;
+  font-weight: 650;
+}
+
+/* The accent word: wine italic, as on the Canva cover ("Consuelo"). */
+.home__accent,
+.boot__word--accent .boot__word-in,
+.pgrid__title em,
+.cc-stamps__title em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--orange-ink);
+}
+
+/* ---------- Home: the masthead rule ---------- */
+.home__masthead {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0;
+  border-top: 1.5px solid var(--navy);
+  border-bottom: 1px solid var(--line-strong);
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+@media (max-width: 1099px) {
+  .home__masthead span:last-child { display: none; }
+}
+
+/* The rail avatar: the transparent cut-out sits on a wine disc. */
+.rail__avatar,
+.hprofile__avatar {
+  background: var(--orange);
+}
+.rail__avatar img { object-fit: cover; object-position: top center; }
+
+/* ---------- Home bento: the four case files ---------- */
+.bento__files {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+}
+.bento__file {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 12px 10px;
+  border-radius: 4px 10px 10px 10px;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+  transform: rotate(calc((var(--i) - 1.5) * 0.8deg));
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+.bento__file:nth-child(odd) {
+  background: var(--orange);
+  border-color: transparent;
+  color: #FFFCFA;
+}
+.bento__card:hover .bento__file { transform: rotate(0) translateY(-2px); }
+.bento__file-tag {
+  align-self: flex-start;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--orange);
+  color: #FFFCFA;
+}
+.bento__file:nth-child(odd) .bento__file-tag { background: #FFFCFA; color: #6E1423; }
+.bento__file-title {
+  font-family: var(--font-serif);
+  font-size: clamp(12px, 0.85vw, 14px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ---------- Home bento: the polaroid ---------- */
+.bento__polaroid { display: grid; place-items: center; }
+.bento__polaroid-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  max-height: 150px;
+  aspect-ratio: 4 / 5;
+  padding: 7px 7px 0;
+  background: var(--orange);
+  box-shadow: 0 14px 26px -16px rgba(28, 22, 19, 0.7);
+  transform: rotate(-3deg);
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+.bento__card:hover .bento__polaroid-frame { transform: rotate(0); }
+.bento__polaroid-frame img {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+  background: #3A2E29;
+}
+.bento__polaroid-cap {
+  padding: 3px 0 5px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  color: #FFFCFA;
+}
+.bento__polaroid-flower {
+  position: absolute;
+  right: 6%;
+  bottom: -4px;
+  width: 30%;
+  max-width: 64px;
+  transform: rotate(18deg);
+  pointer-events: none;
+}
+
+/* Education badge: a glyph in the ring instead of a logo plate. */
+.bento__badge-ring { color: var(--orange-ink); }
+
+/* ---------- Pages that scroll ----------
+   .pgrid is a fixed two-row grid from 1100px up; the Works, Services,
+   Experience and About pages are longer than a viewport and flow instead. */
+@media (min-width: 1100px) {
+  .pgrid.pgrid--flow {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: clamp(40px, 7vh, 80px);
+  }
+}
+.pgrid--flow .pgrid__lede { max-width: 62ch; }
+
+.cc-eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange-ink);
+}
+
+/* ---------- Works ---------- */
+.cc-works {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(14px, 1.4vw, 22px);
+  margin: 0;
+  padding: 0;
+}
+.cc-work {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  min-height: 250px;
+  padding: clamp(18px, 1.8vw, 26px);
+  border-radius: var(--radius-card);
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+  color: var(--navy);
+  text-decoration: none;
+  box-shadow: 0 24px 50px -36px rgba(28, 22, 19, 0.45);
+  transition: transform var(--dur-med) var(--ease-spring), box-shadow var(--dur-med) var(--ease-out);
+}
+.cc-work:hover { transform: translateY(-4px) rotate(-0.4deg); box-shadow: 0 32px 60px -30px rgba(28, 22, 19, 0.55); }
+.cc-work:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+/* The plate stays wine in both themes: it is the Canva card, and
+   vanilla text on it clears AA either way. */
+.cc-work--plate { background: #6E1423; border-color: transparent; color: #FFFCFA; }
+.cc-work__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.cc-work__tag {
+  padding: 5px 14px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: #6E1423;
+  color: #FFFCFA;
+}
+.cc-work--plate .cc-work__tag { background: #FFFCFA; color: #6E1423; }
+.cc-work__index { font-size: 12px; font-variant-numeric: tabular-nums; opacity: 0.7; }
+.cc-work__title {
+  margin-top: 8px;
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 1.7vw, 28px);
+  font-weight: 650;
+  line-height: 1.15;
+}
+.cc-work__body { font-size: 15px; line-height: 1.55; opacity: 0.86; }
+.cc-work__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed currentColor;
+  font-size: 14px;
+  font-weight: 600;
+}
+[data-theme='dark'] .cc-work:not(.cc-work--plate) .cc-work__tag { background: #7D1A19; }
+
+/* ---------- Services ---------- */
+.cc-services {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: clamp(14px, 1.4vw, 22px);
+  margin: 0;
+  padding: 0;
+}
+.cc-service {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 1.8vw, 28px);
+  border-radius: var(--radius-card);
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+}
+.cc-service__ghost {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  font-family: var(--font-serif);
+  font-size: 96px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  color: var(--orange);
+  opacity: 0.1;
+}
+.cc-service__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--orange);
+  color: #FFFCFA;
+}
+.cc-service__title {
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1.15;
+  color: var(--navy);
+}
+.cc-service__chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange-ink);
+}
+.cc-service__body { font-size: 15px; line-height: 1.55; color: var(--muted); }
+
+.cc-band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: clamp(18px, 1.8vw, 26px);
+  border-radius: var(--radius-card);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+}
+.cc-band__copy { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.cc-marks { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+.cc-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+}
+.cc-mark__icon {
+  width: 15px;
+  height: 15px;
+  background: currentColor;
+  -webkit-mask: var(--icon-url) center / contain no-repeat;
+  mask: var(--icon-url) center / contain no-repeat;
+}
+
+/* ---------- Experience: the paper trail ---------- */
+.cc-trail {
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.6vw, 22px);
+  margin: 0;
+  padding: 0 0 0 34px;
+  max-width: 880px;
+}
+/* The spine: a dashed rule the pins sit on. */
+.cc-trail::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 13px;
+  border-left: 2px dashed var(--line-strong);
+}
+.cc-role { position: relative; }
+.cc-role__pin {
+  position: absolute;
+  top: 22px;
+  left: -34px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #FFFCFA;
+  box-shadow: 0 0 0 4px var(--cream);
+}
+.cc-role__card {
+  padding: clamp(18px, 1.8vw, 26px);
+  border-radius: var(--radius-card);
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 24px 50px -40px rgba(28, 22, 19, 0.45);
+}
+.cc-role__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.cc-role__title {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 1.5vw, 24px);
+  font-weight: 650;
+  line-height: 1.2;
+  color: var(--navy);
+}
+.cc-role__org { margin-top: 4px; font-size: 14px; color: var(--muted); }
+/* The date, stamped: a ruled box in accent ink, knocked off square. */
+.cc-role__stamp {
+  flex: none;
+  padding: 5px 10px;
+  border: 2px solid var(--orange-ink);
+  border-radius: 4px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--orange-ink);
+  transform: rotate(-4deg);
+  opacity: 0.9;
+}
+.cc-role__list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 14px 0 0; padding: 0; }
+.cc-role__list li { display: flex; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--navy); }
+.cc-role__list svg { flex: none; margin-top: 3px; color: var(--orange-ink); }
+
+/* ---------- About ---------- */
+.cc-about {
+  display: grid;
+  gap: clamp(20px, 3vw, 48px);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .cc-about {
+    grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.9fr);
+    grid-template-areas:
+      'copy  photo'
+      'facts photo';
+  }
+  .cc-about__copy { grid-area: copy; }
+  .cc-polaroid { grid-area: photo; }
+  .cc-facts { grid-area: facts; }
+}
+.cc-about__copy { display: flex; flex-direction: column; gap: 14px; max-width: 62ch; }
+.cc-about__lead {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 2vw, 34px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.15;
+  color: var(--orange-ink);
+}
+.cc-about__p { font-size: 16px; line-height: 1.7; color: var(--navy); }
+.cc-about__cells { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.cc-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 10px;
+  border-radius: 14px;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+}
+.cc-cell b { display: block; font-size: 14px; color: var(--navy); }
+.cc-cell small { display: block; font-size: 12.5px; color: var(--muted); }
+.cc-cell__mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--orange);
+  color: #FFFCFA;
+}
+
+/* The cover polaroid: brick-red frame, tape, exclamation, hibiscus. */
+.cc-polaroid {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 360px);
+  margin: 24px 24px 32px;
+  padding: 14px 14px 0;
+  background: #7D1A19;
+  box-shadow: 0 30px 60px -30px rgba(28, 22, 19, 0.7);
+  transform: rotate(2deg);
+}
+.cc-polaroid__photo { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #3A2E29; }
+.cc-polaroid__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.cc-polaroid__cap {
+  padding: 10px 0 14px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  color: #FFFCFA;
+}
+.cc-polaroid__tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 40%;
+  height: 28px;
+  background: rgba(90, 72, 64, 0.85);
+  transform: translateX(-30%) rotate(-3deg);
+}
+.cc-polaroid__bang {
+  position: absolute;
+  top: -40px;
+  left: -46px;
+  width: 92px;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+.cc-polaroid__flower {
+  position: absolute;
+  right: -44px;
+  bottom: 30px;
+  width: 112px;
+  transform: rotate(14deg);
+  pointer-events: none;
+}
+
+/* Quick Facts: the slightly crooked sheet of paper. */
+.cc-facts {
+  justify-self: start;
+  max-width: 420px;
+  padding: 22px 26px 26px;
+  background: #FFF3F0;
+  border: 1px solid #2A211D;
+  color: #2A211D;
+  transform: rotate(-1.6deg);
+  box-shadow: 0 18px 40px -30px rgba(28, 22, 19, 0.6);
+}
+.cc-facts__title {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cc-facts ul { margin: 12px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.cc-facts li { font-size: 15px; line-height: 1.45; }
+
+/* Skills: rubber stamps grouped like the Canva page. */
+.cc-stamps { display: flex; flex-direction: column; gap: 18px; margin-top: clamp(8px, 2vh, 24px); }
+.cc-stamps__head { display: flex; flex-direction: column; gap: 6px; }
+.cc-stamps__title { font-size: clamp(26px, 2.2vw, 38px); font-weight: 700; line-height: 1.1; color: var(--navy); }
+.cc-stamps__groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 14px;
+}
+.cc-stamps__group {
+  padding: 18px;
+  border-radius: var(--radius-card);
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+}
+.cc-stamps__label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange-ink);
+}
+.cc-stamps__list { list-style: none; display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 0; padding: 0; }
+.cc-stamp {
+  padding: 5px 11px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--navy);
+}
+.cc-stamp:nth-child(3n + 1) { transform: rotate(-1deg); }
+.cc-stamp:nth-child(3n + 2) { transform: rotate(0.8deg); }
+
+.cc-next { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.cc-next__link { font-weight: 600; color: var(--orange-ink); text-decoration: none; }
+.cc-next__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Phone: the latest clipping ---------- */
+.hclip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 22px;
+  background: #6E1423;
+  color: #FFFCFA;
+  text-decoration: none;
+}
+.hclip__tag {
+  align-self: flex-start;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #FFFCFA;
+  color: #6E1423;
+}
+.hclip__title { font-family: var(--font-serif); font-size: 21px; font-weight: 650; }
+.hclip__body { font-size: 14px; line-height: 1.5; opacity: 0.88; }
+.hclip__go { margin-top: 4px; font-size: 14px; font-weight: 600; }
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .bento__file,
+  .bento__polaroid-frame,
+  .cc-work,
+  .cc-polaroid { transition: none; }
+}
+:root[data-reduce-motion] .cc-work:hover { transform: none; }
+
+/* Four of each: an even 2 x 2, never three and an orphan. Services go four
+   across once there is room for it. */
+@media (min-width: 700px) {
+  .cc-works,
+  .cc-services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1500px) {
+  .cc-services { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* The date stamp drops under the title when the card is narrow. */
+.cc-role__head { flex-wrap: wrap; }
+@media (max-width: 600px) {
+  .cc-trail { padding-left: 26px; }
+  .cc-trail::before { left: 9px; }
+  .cc-role__pin { left: -30px; width: 22px; height: 22px; }
+  .cc-role__pin svg { width: 12px; height: 12px; }
+  .cc-role__card { padding: 16px; }
+}
+
+/* The raised Contact button: vanilla glyph on the accent, in both themes. */
+.tabbar .tabbar__fab { color: #FFFCFA; }

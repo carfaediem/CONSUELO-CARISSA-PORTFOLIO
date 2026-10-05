@@ -1,10 +1,8 @@
-/* Fontsource Poppins - self-hosted, latin subset only (drops devanagari and
-   latin-ext to keep the bundle small). Weights 400 / 500 / 600 / 700 match
-   the four that actually render on this site. */
-@import '@fontsource/poppins/latin-400.css';
-@import '@fontsource/poppins/latin-500.css';
-@import '@fontsource/poppins/latin-600.css';
-@import '@fontsource/poppins/latin-700.css';
+/* Brand type (personal-branding/BRAND-GUIDE.md): Fraunces for headlines,
+   Inter for everything else. Self-hosted variable fonts. */
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/fraunces/wght-italic.css';
+@import '@fontsource-variable/inter';
 
 /* Reset */
 *, *::before, *::after {
@@ -183,7 +181,7 @@ main > * {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 55%, rgba(255, 122, 26, 0.08), transparent 55%),
+    radial-gradient(circle at 50% 55%, rgba(110, 20, 35, 0.08), transparent 55%),
     var(--navy-ink);
 }
 
@@ -318,7 +316,7 @@ main > * {
   object-fit: contain;
   background: var(--white);
   padding: 8px;
-  box-shadow: 0 12px 32px -14px rgba(6, 12, 26, 0.5);
+  box-shadow: 0 12px 32px -14px rgba(28, 22, 19, 0.5);
   opacity: 0;
   animation: intro-mark 450ms cubic-bezier(0.34, 1.56, 0.64, 1) 1300ms forwards;
 }
@@ -368,7 +366,7 @@ main > * {
   height: 220vmax;
   margin: -110vmax 0 0 -110vmax;
   border-radius: 50%;
-  /* Burnt orange, not the bright accent: a full-viewport flash of #FF7A1A is
+  /* Burnt orange, not the bright accent: a full-viewport flash of #6E1423 is
      an eye-strain / photosensitivity risk, so the flood uses the darker ink
      tone and lets the accents stay bright at small sizes only. */
   background: var(--orange-ink);
