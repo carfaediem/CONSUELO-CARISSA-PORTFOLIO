@@ -81,16 +81,16 @@
   opacity: 0;
   will-change: transform;
   --n8n-node: #FFFFFF;
-  --n8n-border: #C9CBD3;
-  --n8n-cable: #B4B7C0;
-  --n8n-ok: #22A15C;
+  --n8n-border: #E4CBC9;
+  --n8n-cable: #D8CBC2;
+  --n8n-ok: #6E1423;
   --n8n-ink: var(--navy);
 }
 [data-theme='dark'] .boot__canvas {
-  --n8n-node: #414244;
-  --n8n-border: #5E5F63;
-  --n8n-cable: #6B6D73;
-  --n8n-ok: #3DBA74;
+  --n8n-node: #3A2E29;
+  --n8n-border: #5A4840;
+  --n8n-cable: #7A6E64;
+  --n8n-ok: #E4CBC9;
   --n8n-ink: #FFFCFA;
 }
 

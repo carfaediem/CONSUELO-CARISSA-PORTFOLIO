@@ -309,7 +309,7 @@ export default function IntroOverlay() {
       succeed(n - 1)
       status.classList.add('is-done')
       const label = status.querySelector<HTMLElement>('.boot__status-text')
-      if (label) label.textContent = 'Workflow executed successfully'
+      if (label) label.textContent = 'Story filed'
       await wait(LOCK)
       if (cancelled) return
 
