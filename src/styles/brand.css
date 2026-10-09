@@ -253,6 +253,129 @@
 }
 [data-theme='dark'] .cc-work:not(.cc-work--plate) .cc-work__tag { background: #7D1A19; }
 
+/* ---------- Works: "All about theater" ----------
+   A cover plate with the title set on the photo, a scrolling strip of
+   stills, then the scripts as a filed list. */
+.cc-stage {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.4vw, 22px);
+  margin-top: clamp(28px, 4vh, 48px);
+}
+.cc-stage__cover {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: #2A211D;
+  box-shadow: 0 24px 50px -36px rgba(28, 22, 19, 0.45);
+}
+.cc-stage__cover img {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 42vh, 460px);
+  object-fit: cover;
+  /* Low enough to keep the ensemble at the foot of the cross in frame. */
+  object-position: center 78%;
+}
+/* The photo is dark at the edges; a wine wash at the foot keeps the
+   vanilla title above AA wherever the image lands. */
+.cc-stage__head {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: clamp(18px, 2.4vw, 32px);
+  background: linear-gradient(to top, rgba(42, 12, 18, 0.92) 0%, rgba(42, 12, 18, 0.55) 60%, transparent 100%);
+  color: #FFFCFA;
+}
+.cc-stage__head .cc-work__tag { background: #FFFCFA; color: #6E1423; }
+.cc-stage__title {
+  margin: 4px 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 2.6vw, 44px);
+  font-weight: 650;
+  line-height: 1.05;
+}
+.cc-stage__title em { font-style: italic; font-weight: 500; }
+.cc-stage__lede { margin: 0; max-width: 52ch; font-size: 15px; line-height: 1.5; opacity: 0.9; }
+
+.cc-stage__stills {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(220px, 26vw, 340px);
+  gap: 12px;
+  margin: 0;
+  padding: 0 0 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+.cc-stage__stills li { scroll-snap-align: start; }
+.cc-stage__stills img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #2A211D;
+}
+
+.cc-stage__scripts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(18px, 1.8vw, 26px);
+  border-radius: var(--radius-card);
+  background: #6E1423;
+  color: #FFFCFA;
+}
+.cc-stage__sub {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 1.5vw, 24px);
+  font-weight: 650;
+}
+.cc-stage__scripts ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.cc-stage__scripts li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 252, 250, 0.28);
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--dur-med) var(--ease-out);
+}
+.cc-stage__scripts li a span:first-of-type { flex: 1; }
+.cc-stage__scripts li a:hover { background: rgba(255, 252, 250, 0.1); }
+.cc-stage__scripts a:focus-visible { outline: 2px solid #FFFCFA; outline-offset: 2px; }
+.cc-stage__all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px dashed currentColor;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 /* ---------- Services ---------- */
 .cc-services {
   list-style: none;

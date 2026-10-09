@@ -56,6 +56,30 @@ export const WORKS: Work[] = [
   },
 ]
 
+/* ---------- Works: "All about theater" ---------- */
+
+/** The THEATER STUFF Drive folder: production stills plus a SCRIPTS folder. */
+export const THEATER_FOLDER =
+  'https://drive.google.com/drive/folders/155BsQv8UuqiEyPAyGgptOuTAy3mtC7PD?usp=sharing'
+
+export const THEATER_COVER = asset('/theater/cover.webp')
+
+/** Production stills, copied from the Drive folder into public/theater/. */
+export const THEATER_STILLS: string[] = Array.from({ length: 13 }, (_, i) =>
+  asset(`/theater/stage-${String(i + 1).padStart(2, '0')}.jpg`),
+)
+
+export type Script = { title: string; href: string }
+
+/** The PDFs in THEATER STUFF / SCRIPTS, titles as the files name them. */
+export const SCRIPTS: Script[] = [
+  { title: 'Bukas na Bukas', href: 'https://drive.google.com/file/d/1eQFt8ERCtEVofzx4hEV85ITQhRYKW8t7/view' },
+  { title: 'Edsa', href: 'https://drive.google.com/file/d/1ytcfrh68B_-061IoVeWYGRNrmtnFzhL2/view' },
+  { title: 'Hukay-Ukay', href: 'https://drive.google.com/file/d/10oNUYOy730X6p7EISzg2YWIhq0uSc1SB/view' },
+  { title: 'Hulagpos', href: 'https://drive.google.com/file/d/1sKLedPQDnE59KXS2PebdmlaaGI-SoGeF/view' },
+  { title: 'Sa Bayang Pabagsak', href: 'https://drive.google.com/file/d/1Sh-SDjmhoiKvcjs5t9idlnrsG8ZLBLtd/view' },
+]
+
 /* ---------- Experience: "The paper trail" ---------- */
 
 export type Role = {
